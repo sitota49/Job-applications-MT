@@ -13,7 +13,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.role.index');
     }
 
     /**
