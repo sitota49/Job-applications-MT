@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\UserRole;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     public function hasRole($roleName)
+    {
+        $hasRole = false;
+        $userRoles = auth()->user()->userRoles()->with('role')->get();
+        foreach($userRoles as $userRole)
+        {
+            if($userRole->role->name == $roleName)
+            {
+                $hasRole = true;
+            }
+        }
+
+        return $hasRole;
+    }
+
+   
+    /**
+     * Get all of the userRoles for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userRoles()
+    {
+        return $this->hasMany(UserRole::class, 'user_id', 'id');
+    }
 }
