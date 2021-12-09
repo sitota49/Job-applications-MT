@@ -2,35 +2,27 @@
 @section('panel')
 
 <div class="container-fluid text-center">
-
+   <div>
+       <a class="btn btn-primary">Create role</a>
+   </div>
+   <br/>
     <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">role</th>
+
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+            @forelse ($roles as $role)
+            <tr>
+                <th scope="row">{{$role->id}}</th>
+                <td>{{$role->name}}</td>
+            </tr>
+            @empty
+                <div>No roles</div>
+            @endforelse($roles as $role)
         </tbody>
       </table>
 

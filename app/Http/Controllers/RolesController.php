@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Roles;
 
 class RolesController extends Controller
 {
@@ -13,7 +16,10 @@ class RolesController extends Controller
      */
     public function index()
     {
-        return view('pages.role.index');
+        $roles = Role::orderBy('id', 'desc')->get();
+        $users = User::orderBy('id', 'desc')->get();
+
+        return view('pages.role.index', ['roles' => $roles,'users'=>$users]);
     }
 
     /**
