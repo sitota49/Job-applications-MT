@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<h2 class="container">DashBordered</h2>
+<h2 class="container">Dashboard</h2>
     <div class="container d-flex justify-content-between">
         <div class="p-2">
             <div>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="p-2 container-fluid">
-           <div >
+           <div class="container-fluid text-center" >
             @yield('panel')
            </div>
         </div>

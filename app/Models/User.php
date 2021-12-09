@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserRole;
+use App\Models\Application;
 
 class User extends Authenticatable
 {
@@ -71,4 +72,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserRole::class, 'user_id', 'id');
     }
+    public function userSkills()
+    {
+        return $this->hasMany(UserSkills::class, 'user_id', 'id');
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany(Application::class);
+    }
+
 }

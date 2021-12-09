@@ -7,3 +7,12 @@
 .capitalize {
     text-transform: capitalize;
 }
+
+
+.mylist{
+    overflow: scroll;
+}
+
+.mylist::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }

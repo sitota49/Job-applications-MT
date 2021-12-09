@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('skill', SkillsController::class);
+Route::resource('skill', SkillsController::class)->middleware('isAdmin');
 Route::resource('role', RolesController::class);
 Route::resource('user', UsersController::class);
 

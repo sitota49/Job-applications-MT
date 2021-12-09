@@ -1,10 +1,7 @@
 @extends('pages.dashbord')
 @section('panel')
 
-<div class="container-fluid text-center">
-   <div>
-       <a class="btn btn-primary">Create role</a>
-   </div>
+<div>
    <br/>
     <table class="table">
         <thead>
@@ -22,7 +19,7 @@
             </tr>
             @empty
                 <div>No roles</div>
-            @endforelse($roles as $role)
+            @endforelse
         </tbody>
       </table>
 

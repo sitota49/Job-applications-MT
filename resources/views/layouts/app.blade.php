@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" href="{{asset('job-ninja.png')}}"/>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @livewireStyles
+    {{-- @livewireStyles --}}
 </head>
 <body>
     <div id="app">
@@ -78,9 +78,10 @@
         </nav>
 
         <main class="py-4">
+            @include('inc.message')
             @yield('content')
         </main>
     </div>
-    @livewireScripts
+    {{-- @livewireScripts --}}
 </body>
 </html>
