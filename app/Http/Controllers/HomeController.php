@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\UserRole;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+       $role= UserRole::where('user_id','=',auth()->user()->id)->get();
+
+       if($role[0]->role_id == 1){
+          return view('home');
+       }else if($role[0]->role_id ==2){
+        return view('pages.seeker.index');
+       }else{
+        return view('pages.company.index');
+       }
     }
 }

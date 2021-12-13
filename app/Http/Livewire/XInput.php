@@ -14,4 +14,6 @@ class XInput extends Component
     {
         return view('livewire.x-input');
     }
+
+
 }

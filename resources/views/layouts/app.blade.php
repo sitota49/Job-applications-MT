@@ -19,13 +19,13 @@
     <link rel="icon" type="image/png" href="{{asset('job-ninja.png')}}"/>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- @livewireStyles --}}
+    @livewireStyles
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                    <img src="{{asset('job-ninja.png')}}" width="100" height="60" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -48,11 +48,11 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+
+                                {{-- <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register.create') }}">{{ __('Register') }}</a>
+                                </li> --}}
+
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -82,6 +82,6 @@
             @yield('content')
         </main>
     </div>
-    {{-- @livewireScripts --}}
+    @livewireScripts
 </body>
 </html>

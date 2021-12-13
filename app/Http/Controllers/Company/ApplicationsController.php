@@ -1,17 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Company;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Models\Job;
+use App\Models\Application;
 use App\Models\User;
-class UsersController extends Controller
+use App\Models\UserSkill;
+use App\Models\Skill;
+
+
+
+
+class ApplicationsController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('isAdmin');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +23,27 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users =User::all();
-        return view('pages.users.index')->with('users', $users);
+
+        $job = null;
+        $users = null;
+       $application = Application::all();
+
+       foreach ($application as $app){
+        $job = Job::where('id','=',$app->job_id)
+        ->where('user_id','=',auth()->user()->id)->get();
+
+       $users = User::where('id','=',$app->seeker_id)->get();
+       }
+
+
+
+       return view('pages.company.application.index')->with(
+           [
+        'jobs'=>$job,
+       'applications'=>$application,
+       'users'=>$users
+    ]);
+
     }
 
     /**
@@ -52,7 +75,23 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user =User::find($id);
+
+
+
+        $skills = UserSkill::where('user_id','=',$id)->get();
+
+
+
+
+        // dd($skills);
+        foreach($skills as $skill){
+            $myskill = Skill::where('id','=',$skill->skill_id)->get();
+
+            // dd($skill->skill_id);
+             $level = $skill->level;
+             return view('pages.company.application.show')->with(['skills'=>$myskill,'user'=>$user,'level'=>$level]);
+        }
     }
 
     /**

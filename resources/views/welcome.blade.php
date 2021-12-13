@@ -8,9 +8,14 @@
     <img src="{{asset('job-ninja.png')}}" width="100" />
 </h1>
 <div class="text-center">
-    <a href="/home" class="btn btn-primary">
-        get started!
+    <br/><br/><br/>
+   <div class="text-center">
+    <a href="/register/create" class="btn btn-primary">
+       get started
     </a>
+   </div>
+   <br/>
+
 </div>
 
 </div>

@@ -2,6 +2,7 @@
 @section('panel')
 
 <div>
+    <h3>Role Types</h3>
    <br/>
     <table class="table">
         <thead>
