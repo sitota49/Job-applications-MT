@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\SkillsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('skill', SkillsController::class)->middleware('isAdmin');
+Route::resource('role', RolesController::class);
+Route::resource('user', UsersController::class);
 
 Auth::routes();
 
