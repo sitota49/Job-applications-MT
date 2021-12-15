@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Role;
 use App\Models\Skill;
+use App\Models\Role;
 use App\Models\UserRole;
 use App\Models\UserSkill;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
-class ApiAuthController extends Controller
+class UserAuthController extends Controller
 {
-    public function register(Request $request) {
-
-       
+     public function register(Request $request) 
+    {       
         $fields = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
@@ -23,8 +22,6 @@ class ApiAuthController extends Controller
             'phone_number'=> 'required|string',
             'address'=> 'required|string',
             'role'=> 'required|string',
-            'skill'=> 'string',
-            'level'=> 'string'
         ]);
 
         $user = User::create([
@@ -45,24 +42,7 @@ class ApiAuthController extends Controller
             $user_role->save();
         }
 
-        if($role->name == 'Seeker'){
-
-    if($fields['skill']) {
-        $skill = Skill::where('name',  $fields['skill'])->first();
-        
-        if($skill == null) {
-            $skill = new Skill;
-            $skill->name = $fields['skill'];
-            $skill->save();
-        }
-
-        $user_skill = new UserSkill;
-        $user_skill->user_id = $user->id;
-        $user_skill->skill_id = $skill->id;
-        $user_skill->level = $fields['level'];
-        $user_skill->save();
-    }
-}
+    
         $token = $user->createToken('secrettoken')->plainTextToken;
 
         $response = [

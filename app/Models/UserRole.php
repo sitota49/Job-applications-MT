@@ -14,6 +14,12 @@ class UserRole extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+     protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
+
     /**
      * Get the role that owns the UserRole
      *

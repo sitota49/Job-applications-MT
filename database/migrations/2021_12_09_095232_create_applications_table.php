@@ -15,8 +15,10 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->string('seeker_id');
-            $table->string('job_id');
+            $table->unsignedBigInteger('seeker_id');
+            $table->foreign('seeker_id')->references('id')->on('users');
+            $table->unsignedBigInteger('job_id');
+            $table->foreign('job_id')->references('id')->on('jobs');
             $table->timestamps();
         });
     }

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserRole;
+use App\Models\UserSkill;
+use App\Models\Job;
 use App\Models\Application;
 
 class User extends Authenticatable
@@ -24,7 +26,8 @@ class User extends Authenticatable
         'email',
         'password',
         'phone_number',
-        'address'
+        'address',
+        
     ];
 
     /**
@@ -73,12 +76,18 @@ class User extends Authenticatable
     }
     public function userSkills()
     {
-        return $this->hasMany(UserSkills::class, 'user_id', 'id');
+        return $this->hasMany(UserSkill::class, 'user_id', 'id');
     }
 
     public function jobs()
     {
-        return $this->hasMany(Application::class);
+        return $this->hasMany(Job::class);
     }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class, 'seeker_id', 'id');
+    }
+
 
 }

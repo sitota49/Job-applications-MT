@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\Shared;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+
 use App\Models\Skill;
 
-class ApiController extends Controller
+class SkillsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class ApiController extends Controller
      */
     public function index()
     {
-        //
+        return Skill::all();
     }
 
     /**
@@ -83,26 +84,4 @@ class ApiController extends Controller
     {
         //
     }
-
-     public function searchByUserName($name)
-    {
-        return User::where('name', 'like', '%'.$name.'%')->get();
-    }
-
-   
-     public function allUsers()
-    {
-        return User::all();
-    }
-
-    public function findUserById($id)
-    {
-        return User::find($id);
-    }
-
-    public function allSkills(){
-         return Skill::all();
-    }
-
-
 }
